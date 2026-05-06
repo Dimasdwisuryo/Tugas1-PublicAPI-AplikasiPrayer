@@ -1,59 +1,154 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Prayer Time & Quran Verse App
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi web berbasis **Laravel** yang menampilkan jadwal sholat 5 waktu secara real-time berdasarkan kota dan negara yang dipilih, dilengkapi dengan ayat Al-Quran harian beserta terjemahan Bahasa Indonesia.
 
-## About Laravel
+Dibuat sebagai tugas matakuliah **Integrasi Aplikasi Enterprise** dengan mengimplementasikan Public API pada aplikasi monolith sederhana.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Fitur Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Jadwal Sholat Real-time** — Subuh, Dzuhur, Ashar, Maghrib, Isya berdasarkan kota yang dipilih
+- **Ayat Al-Quran Harian** — Ayat beserta teks Arab dan terjemahan Indonesia, berganti otomatis setiap hari
+- **Mendukung 40+ Negara** — Mencakup seluruh negara dengan populasi Muslim di Asia, Timur Tengah, Afrika, dan Eropa
+- **Tanggal Hijriyah** — Ditampilkan otomatis bersama jadwal sholat
+- **Highlight Waktu Berikutnya** — Menampilkan waktu sholat yang akan datang secara otomatis
+- **Responsive** — Tampilan menyesuaikan di desktop maupun mobile
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Public API yang Digunakan
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+| API | Endpoint | Fungsi | API Key |
+|-----|----------|--------|---------|
+| [Aladhan API](https://aladhan.com/prayer-times-api) | `api.aladhan.com/v1/timingsByCity` | Jadwal waktu sholat | Tidak perlu |
+| [Al-Quran Cloud API](https://alquran.cloud/api) | `api.alquran.cloud/v1/ayah/{n}/id.indonesian` | Ayat Al-Quran + terjemahan | Tidak perlu |
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Teknologi yang Digunakan
 
-### Premium Partners
+- **Framework** : Laravel 11
+- **Bahasa** : PHP 8.2+
+- **HTTP Client** : Guzzle HTTP (built-in Laravel)
+- **Template Engine** : Blade
+- **Frontend** : HTML, CSS (tanpa framework CSS)
+- **Server Lokal** : XAMPP
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## Cara Instalasi & Menjalankan
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Prasyarat
+Pastikan sudah terinstall:
+- PHP >= 8.2
+- Composer
+- Git
 
-## Code of Conduct
+### Langkah Instalasi
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**1. Clone repository ini**
+```bash
+git clone https://github.com/Dimasdwisuryo/Tugas1-PublicAPI-AplikasiPrayer.git
+cd Tugas1-PublicAPI-AplikasiPrayer
+```
 
-## Security Vulnerabilities
+**2. Install dependensi Laravel**
+```bash
+composer install
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**3. Buat file environment**
+```bash
+copy .env.example .env
+```
 
-## License
+**4. Generate application key**
+```bash
+php artisan key:generate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**5. Set timezone ke WIB di `config/app.php`**
+```php
+'timezone' => 'Asia/Jakarta',
+```
+
+**6. Jalankan server**
+```bash
+php artisan serve
+```
+
+**7. Buka di browser**
+```
+http://localhost:8000
+```
+
+---
+
+## Cara Penggunaan
+
+1. **Pilih Negara** — Pilih negara dari dropdown yang tersedia (40+ negara Muslim)
+2. **Ketik Nama Kota** — Masukkan nama kota sesuai contoh yang muncul otomatis
+3. **Klik "Cari Jadwal Sholat"** — Aplikasi akan mengambil data dari API secara real-time
+4. **Lihat Hasil** — Jadwal sholat 5 waktu, waktu sholat berikutnya, tanggal Hijriyah, dan ayat harian akan ditampilkan
+
+### Contoh Kota yang Bisa Dicari
+
+| Negara | Contoh Kota |
+|--------|-------------|
+| 🇮🇩 Indonesia | Surabaya, Jakarta, Bandung, Sidoarjo |
+| 🇸🇦 Arab Saudi | Makkah, Madinah, Riyadh, Jeddah |
+| 🇲🇾 Malaysia | Kuala Lumpur, Johor Bahru, Penang |
+| 🇹🇷 Turki | Istanbul, Ankara, Izmir |
+| 🇪🇬 Mesir | Cairo, Alexandria, Giza |
+| 🇵🇰 Pakistan | Karachi, Lahore, Islamabad |
+
+---
+
+## Struktur Project
+
+```
+prayer-app/
+├── app/
+│   ├── Http/Controllers/
+│   │   └── PrayerController.php   # Controller utama
+│   ├── Providers/
+│   │   └── AppServiceProvider.php
+│   └── Services/
+│       ├── AladhanService.php     # Integrasi Aladhan API
+│       └── QuranService.php       # Integrasi Al-Quran API
+├── public/
+│   ├── css/
+│   │   └── app.css                # Styling aplikasi
+│   └── favicon.png
+├── resources/views/
+│   ├── layouts/
+│   │   └── app.blade.php          # Layout utama
+│   └── prayer/
+│       ├── index.blade.php        # Halaman form
+│       └── result.blade.php       # Halaman hasil
+├── routes/
+│   └── web.php                    # Routing aplikasi
+└── .env                           # Konfigurasi environment
+```
+
+---
+
+## Alur Kerja Aplikasi
+
+```
+User input kota & negara
+        ↓
+PrayerController@show
+        ↓
+AladhanService::getTimings()  →  GET api.aladhan.com/v1/timingsByCity
+QuranService::getDailyAyah()  →  GET api.alquran.cloud/v1/ayah/{n}/id.indonesian
+        ↓
+Render view prayer.result
+        ↓
+Tampil ke user
+```
+
+---
+
+Project ini dibuat untuk memenuhi tugas mata kuliah Integrasi Aplikasi Enterprise akademik.
