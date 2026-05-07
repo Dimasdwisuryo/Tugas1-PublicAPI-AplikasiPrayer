@@ -19,10 +19,10 @@ Dibuat sebagai tugas matakuliah **Integrasi Aplikasi Enterprise** dengan mengimp
 
 ## Public API yang Digunakan
 
-| API | Endpoint | Fungsi | API Key |
-|-----|----------|--------|---------|
-| [Aladhan API](https://aladhan.com/prayer-times-api) | `api.aladhan.com/v1/timingsByCity` | Jadwal waktu sholat | Tidak perlu |
-| [Al-Quran Cloud API](https://alquran.cloud/api) | `api.alquran.cloud/v1/ayah/{n}/id.indonesian` | Ayat Al-Quran + terjemahan | Tidak perlu |
+| API | Endpoint | Fungsi |
+|-----|----------|--------|
+| [Aladhan API](https://aladhan.com/prayer-times-api) | `api.aladhan.com/v1/timingsByCity` | Jadwal waktu sholat |
+| [Al-Quran Cloud API](https://alquran.cloud/api) | `api.alquran.cloud/v1/ayah/{n}/id.indonesian` | Ayat Al-Quran + terjemahan |
 
 ---
 
